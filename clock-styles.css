@@ -1,0 +1,359 @@
+:root {
+    --primary-color: #1e40af;
+    --secondary-color: #0891b2;
+    --success-color: #059669;
+    --danger-color: #dc2626;
+    --bg-dark: #0f172a;
+    --bg-light: #1e293b;
+    --text-light: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f35 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header .subtitle {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.format-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.format-btn,
+.add-timezone-btn {
+    padding: 12px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-light);
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.format-btn:hover,
+.add-timezone-btn:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.format-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-light);
+    color: var(--text-light);
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(30, 64, 175, 0.3);
+}
+
+.main-clock-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.main-clock {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 50px 80px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.time-display {
+    font-size: 4em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.date-display {
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 15px;
+}
+
+.timezone-label {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.timezones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.timezone-card {
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+}
+
+.timezone-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(30, 64, 175, 0.2);
+    transform: translateY(-5px);
+}
+
+.timezone-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.timezone-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.remove-timezone-btn {
+    background: var(--danger-color);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.remove-timezone-btn:hover {
+    background: #b91c1c;
+    transform: scale(1.05);
+}
+
+.timezone-time {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.timezone-date {
+    font-size: 0.9em;
+    color: var(--text-muted);
+}
+
+.timezone-offset {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-light);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    min-width: 400px;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-overlay.show {
+    display: block;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--text-light);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: var(--text-light);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    font-size: 1em;
+    max-height: 300px;
+}
+
+.modal-body select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.modal-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-cancel,
+.btn-add {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel {
+    background: var(--border-color);
+    color: var(--text-light);
+}
+
+.btn-cancel:hover {
+    background: #475569;
+}
+
+.btn-add {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-add:hover {
+    background: #047857;
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px 20px;
+    font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+    .controls {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .main-clock {
+        padding: 30px 40px;
+    }
+
+    .time-display {
+        font-size: 2.5em;
+    }
+
+    .timezones-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal {
+        min-width: 90%;
+        max-width: 400px;
+    }
+}
