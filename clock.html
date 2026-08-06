@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock - Multiple Time Zones</title>
+    <link rel="stylesheet" href="clock-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⏰ Digital Clock</h1>
+            <p class="subtitle">Multiple Time Zones</p>
+        </header>
+
+        <div class="controls">
+            <div class="format-toggle">
+                <button class="format-btn active" data-format="12">12-Hour</button>
+                <button class="format-btn" data-format="24">24-Hour</button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchTimezone" placeholder="Search timezone...">
+            </div>
+            <button class="add-timezone-btn" id="addTimezoneBtn">+ Add Timezone</button>
+        </div>
+
+        <div class="main-clock-section">
+            <div class="main-clock">
+                <div class="time-display" id="mainTime">00:00:00</div>
+                <div class="date-display" id="mainDate">--/--/----</div>
+                <div class="timezone-label" id="mainTimezone">Local Time</div>
+            </div>
+        </div>
+
+        <div class="timezones-grid" id="timezonesGrid">
+            <!-- Clock cards will be generated here -->
+        </div>
+
+        <!-- Modal for adding timezone -->
+        <div class="modal" id="timezoneModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add Timezone</h2>
+                    <button class="close-btn" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <select id="timezoneSelect">
+                        <option value="">Select a timezone...</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" id="cancelBtn">Cancel</button>
+                    <button class="btn-add" id="confirmAddBtn">Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="modalOverlay"></div>
+    </div>
+
+    <script src="clock-app.js"></script>
+</body>
+</html>
