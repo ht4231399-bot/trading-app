@@ -8,9 +8,12 @@
 </head>
 <body>
     <div class="container">
+        <!-- TradingView ticker tape for highly accurate live rates -->
+        <div id="tv-ticker" style="margin: 12px 0;"></div>
+
         <header>
             <h1>💹 Trading Rates Viewer</h1>
-            <p class="subtitle">Real-time Exchange Rates & Cryptocurrencies</p>
+            <p class="subtitle">Real-time Exchange Rates, Commodities & Companies</p>
         </header>
 
         <div class="controls">
@@ -21,6 +24,8 @@
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="forex">Forex</button>
                 <button class="filter-btn" data-filter="crypto">Crypto</button>
+                <button class="filter-btn" data-filter="commodity">Commodity</button>
+                <button class="filter-btn" data-filter="stock">Stock</button>
             </div>
             <button class="watchlist-btn" id="watchlistBtn">⭐ Watchlist</button>
         </div>
@@ -60,5 +65,31 @@
     </div>
 
     <script src="app.js"></script>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script>
+        // Initialize a TradingView Ticker Tape widget for accurate live tickers
+        new TradingView.MediumWidget({
+            "symbols": [
+                { "proName": "OANDA:XAUUSD", "title": "Gold (XAUUSD)" },
+                { "proName": "OANDA:XAGUSD", "title": "Silver (XAGUSD)" },
+                { "proName": "NYMEX:CL1!", "title": "Crude Oil (CL)" },
+                { "proName": "NYMEX:NG1!", "title": "Nat Gas (NG)" },
+                { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
+                { "proName": "BINANCE:BTCUSDT", "title": "BTC/USDT" },
+                { "proName": "BINANCE:ETHUSDT", "title": "ETH/USDT" }
+            ],
+            "chartOnly": false,
+            "width": "100%",
+            "height": 36,
+            "locale": "en",
+            "colorTheme": "light",
+            "isTransparent": false,
+            "autosize": true,
+            "container_id": "tv-ticker"
+        });
+    </script>
+
+    <!-- Live rates WS client (updates tradingPairs in app.js) -->
+    <script src="app.live.ws.js"></script>
 </body>
 </html>
